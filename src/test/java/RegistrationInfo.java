@@ -1,32 +1,17 @@
-import lombok.Data;
+import lombok.*;
 
 @Data
+@RequiredArgsConstructor
+@AllArgsConstructor
+@NoArgsConstructor
+@Getter
+@Setter
+
 public class RegistrationInfo {
-    String address;
-    String date;
-    String name;
-    String fullName;
-    String phoneNumber;
-
-
-    public String getAddress() {
-        return address;
-    }
-
-    public String getDate() {
-        return date;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public String getFullName() {
-        return fullName;
-    }
-
-    public String getPhoneNumber() {
-        return phoneNumber;
-    }
+    private final String address;
+    private final String name;
+    private final String phone;
+    private final String date1;
+    private final String date2;
 }
 
