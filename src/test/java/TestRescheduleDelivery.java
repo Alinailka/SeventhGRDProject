@@ -14,25 +14,31 @@ import static com.codeborne.selenide.Selenide.*;
 public class TestRescheduleDelivery {
 
     @BeforeEach
-    public void setUp(){
-    Configuration.holdBrowserOpen = true;
-    open("http://localhost:9999/");}
+    public void setUp() {
+        Configuration.holdBrowserOpen = true;
+        open("http://localhost:9999/");
+    }
 
     @Test
     public void cardDelivery() {
-        RegistrationInfo info= DataGenerator.Registration.generateUser("ru", 5,7);
 
-        $("[data-test-id='city'] input").setValue(info.getAddress());
+        var name = DataGenerator.generateName("ru");
+        var address = DataGenerator.generateAddress("ru");
+        var date1 = DataGenerator.generateDate1(5);
+        var date2 = DataGenerator.generateDate2(7);
+        var phone = DataGenerator.generatePhone("ru");
+
+        $("[data-test-id='city'] input").setValue(address);
         $("[data-test-id='date'] input").doubleClick().sendKeys(Keys.BACK_SPACE);
-        $("[data-test-id='date'] input").setValue(info.getDate1());
-        $("[name=\"name\"]").setValue(info.getName());
-        $("[name=\"phone\"]").setValue(info.getPhone());
+        $("[data-test-id='date'] input").setValue(date1);
+        $("[name=\"name\"]").setValue(name);
+        $("[name=\"phone\"]").setValue(phone);
         $(withText("Я соглашаюсь с условиями")).click();
         $(byText("Запланировать")).click();
         $("[data-test-id=success-notification]").should(visible, Duration.ofSeconds(15));
 
         $("[data-test-id='date'] input").doubleClick().sendKeys(Keys.BACK_SPACE);
-        $("[data-test-id='date'] input").setValue(info.getDate2());
+        $("[data-test-id='date'] input").setValue(date2);
         $(byText("Запланировать")).click();
         $("[data-test-id=replan-notification]").should(visible, Duration.ofSeconds(15));
         $x("//span[text()=\"Перепланировать\"]").click();
