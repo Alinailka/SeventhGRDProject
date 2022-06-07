@@ -9,7 +9,7 @@ import org.openqa.selenium.Keys;
 
 import java.time.Duration;
 
-import static com.codeborne.selenide.Condition.visible;
+import static com.codeborne.selenide.Condition.*;
 import static com.codeborne.selenide.Selectors.byText;
 import static com.codeborne.selenide.Selectors.withText;
 import static com.codeborne.selenide.Selenide.*;
@@ -48,13 +48,13 @@ public class TestRescheduleDelivery {
         $("[name=\"phone\"]").setValue(phone);
         $(withText("Я соглашаюсь с условиями")).click();
         $(byText("Запланировать")).click();
-        $x("//[contains(text() = \"Встреча успешно запланирована на \"]").should(visible, Duration.ofSeconds(15));
+        $("[data-test-id='success-notification']").should(matchText(date1), Duration.ofSeconds(15));
 
         $("[data-test-id='date'] input").doubleClick().sendKeys(Keys.BACK_SPACE);
         $("[data-test-id='date'] input").setValue(date2);
         $(byText("Запланировать")).click();
         $("[data-test-id=replan-notification]").should(visible, Duration.ofSeconds(15));
         $x("//span[text()=\"Перепланировать\"]").click();
-        $x("//div[text()=\"Успешно!\"]").should(visible, Duration.ofSeconds(15));
+        $("[data-test-id='success-notification']").should(matchText(date2), Duration.ofSeconds(15));
     }
 }
