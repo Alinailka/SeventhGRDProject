@@ -1,10 +1,4 @@
 import com.github.javafaker.Faker;
-import lombok.Data;
-import lombok.RequiredArgsConstructor;
-import lombok.Value;
-import lombok.experimental.UtilityClass;
-import org.junit.jupiter.api.BeforeEach;
-
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
@@ -48,25 +42,4 @@ public class DataGenerator {
         String date2 = format1.format(c.getTime());
         return date2;
     }
-
-//    public static class Registration {
-//
-//        private Registration() {
-//        }
-
-//        public static UserInfo generateUser(String local) {
-//            UserInfo user = new UserInfo(generateAddress("ru"), generateDate1(5),
-//                    generateName("ru"), generatePhone("ru"), generateDate2(7));
-//            return user;
-//        }
-
-//        @Value
-//        public static class UserInfo {
-//            String address;
-//            String date1;
-//            String name;
-//            String phone;
-//            String date2;
-//        }
-   // }
 }
