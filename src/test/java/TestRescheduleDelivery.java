@@ -37,8 +37,8 @@ public class TestRescheduleDelivery {
 
         var name = DataGenerator.generateName("ru");
         var address = DataGenerator.generateAddress("ru");
-        var date1 = DataGenerator.generateDate1(5);
-        var date2 = DataGenerator.generateDate2(7);
+        var date1 = DataGenerator.generateDate(5);
+        var date2 = DataGenerator.generateDate(7);
         var phone = DataGenerator.generatePhone("ru");
 
         $("[data-test-id='city'] input").setValue(address);
@@ -48,7 +48,7 @@ public class TestRescheduleDelivery {
         $("[name=\"phone\"]").setValue(phone);
         $(withText("Я соглашаюсь с условиями")).click();
         $(byText("Запланировать")).click();
-        $("[data-test-id=success-notification]").should(visible, Duration.ofSeconds(15));
+        $x("//[contains(text() = \"Встреча успешно запланирована на \"]").should(visible, Duration.ofSeconds(15));
 
         $("[data-test-id='date'] input").doubleClick().sendKeys(Keys.BACK_SPACE);
         $("[data-test-id='date'] input").setValue(date2);
