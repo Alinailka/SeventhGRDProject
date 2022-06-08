@@ -19,11 +19,7 @@ public class DataGenerator {
     }
 
     public static String generateDate(int days) {
-
-        LocalDate localDate = LocalDate.now().plusDays(days);
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd.MM.yyyy");
-        String formattedString = localDate.format(formatter);
-        return formattedString;
+        return LocalDate.now().plusDays(days).format(DateTimeFormatter.ofPattern("dd.MM.yyyy"));
     }
 
     public static String generateName(String local) {
